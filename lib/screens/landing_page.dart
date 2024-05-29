@@ -29,7 +29,18 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search G_36'),
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search G_36',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25.0)),
+              borderSide: BorderSide.none,
+            ),
+            filled: true,
+            contentPadding: EdgeInsets.all(8.0),
+          ),
+        ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
