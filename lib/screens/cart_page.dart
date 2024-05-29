@@ -18,7 +18,7 @@ class CartPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CartItem(cart.items[index]);
               },
-       ),
+            ),
     );
   }
 }
