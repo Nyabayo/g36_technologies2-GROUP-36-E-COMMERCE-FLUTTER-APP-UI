@@ -38,6 +38,7 @@ class _LandingPageState extends State<LandingPage> {
               borderSide: BorderSide.none,
             ),
             filled: true,
+            fillColor: Colors.white,
             contentPadding: EdgeInsets.all(8.0),
           ),
         ),
@@ -64,6 +65,8 @@ class _LandingPageState extends State<LandingPage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.black,
+        backgroundColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

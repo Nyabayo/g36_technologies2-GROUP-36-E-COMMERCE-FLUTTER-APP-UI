@@ -19,6 +19,7 @@ class G36App extends StatelessWidget {
         title: 'G_36 Technologies',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
         ),
         home: SplashScreen(),
       ),
