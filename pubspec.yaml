@@ -1,0 +1,36 @@
+name: g36_technologies2
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  provider: ^5.0.0
+  http: ^0.13.3
+  url_launcher: ^6.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/splash.jpg
+    - images/laptop.jpg
+    - images/Desktop.jpg
+    - images/hdd.jpg
+    - images/Smartphone.jpg
+    - images/smartwatch.jpg
+    - images/Television.jpg
+    - images\Home Theater System.jpg
+    - images\Streaming Device1.webp
+    - images\VR Headsetsare.webp
