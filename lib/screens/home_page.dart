@@ -7,8 +7,7 @@ class HomePage extends StatelessWidget {
     Product(
       id: '1',
       name: 'HP ENVY x360 13-bf0003na',
-      description:
-          'Intel Core i5 processor, 8GB Ram, 512GB SSD. We like: Flexible design. We don\'t like: Mediocre webcam in our tests.',
+      description: 'Intel Core i5 processor, 8GB Ram, 512GB SSD. We like: Flexible design. We don\'t like: Mediocre webcam in our tests.',
       price: 45000,
       imageUrl: 'images/laptop.jpg',
       category: 'Computers & Accessories',
@@ -34,7 +33,7 @@ class HomePage extends StatelessWidget {
       name: 'Kyocera TASKalfa M2552cidn A3 Colour Multifunction Laser Printer',
       description: 'Up to 25 pages per minute in b/w and colour...',
       price: 450000,
-      imageUrl: 'images/Printer.jpg',
+      imageUrl: 'images/printer.webp',
       category: 'Computers & Accessories',
     ),
     Product(
@@ -55,23 +54,6 @@ class HomePage extends StatelessWidget {
     ),
     Product(
       id: '7',
-      name: 'onn. 7" Tablet, 32GB (2022 Model)',
-      description: '2.0 GHz Quad-Core Processor, Charcoal',
-      price: 59000,
-      imageUrl: 'images/tablet.jpg',
-      category: 'Mobile Devices & Accessories',
-    ),
-    Product(
-      id: '8',
-      name:
-          'Vention 20000mAh Power Bank (Micro-USB + USB-C + USB-A + USB-A) 22.5W White-FHLB0',
-      description: '',
-      price: 2800,
-      imageUrl: 'images/Power%20Bank.jpg',
-      category: 'Mobile Devices & Accessories',
-    ),
-    Product(
-      id: '9',
       name: 'Hisense 65 inch TV Smart 4K UHD Frameless 65A7GKEN',
       description: '',
       price: 89995,
@@ -79,28 +61,27 @@ class HomePage extends StatelessWidget {
       category: 'Home Entertainment',
     ),
     Product(
-      id: '10',
+      id: '8',
       name: 'LG LHD657 5.1CH 1000W Home Theatre System',
       description: '',
       price: 44999,
-      imageUrl: 'images/Home%20Theater%20System.jpg',
+      imageUrl: 'images/Home Theater System.jpg',
       category: 'Home Entertainment',
     ),
     Product(
-      id: '11',
-      name:
-          'Turn Your Analogue TV Smart Android TV by purchasing This Android 11 Set-top Box',
+      id: '9',
+      name: 'Turn Your Analogue TV Smart Android TV by purchasing This Android 11 Set-top Box',
       description: '',
       price: 2780,
-      imageUrl: 'images/Streaming%20Device1.jpg',
+      imageUrl: 'images/Streaming Device1.webp',
       category: 'Home Entertainment',
     ),
     Product(
-      id: '12',
+      id: '10',
       name: 'Meta Quest 2 Advanced All-in-One VR Headset',
       description: '',
       price: 45000,
-      imageUrl: 'images/VR%20Headsetsare.webp',
+      imageUrl: 'images/VR Headsetsare.webp',
       category: 'Home Entertainment',
     ),
   ];
@@ -137,6 +118,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  // Build product category grid
   Widget _buildProductCategory(BuildContext context, String category) {
     final categoryProducts =
         products.where((product) => product.category == category).toList();
@@ -148,6 +130,7 @@ class HomePage extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0,
+        childAspectRatio: 0.75, // To prevent overflow
       ),
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -160,12 +143,31 @@ class HomePage extends StatelessWidget {
               ),
             );
           },
-          child: Column(
-            children: [
-              Image.asset(categoryProducts[index].imageUrl, height: 100),
-              Text(categoryProducts[index].name),
-              Text('Ksh. ${categoryProducts[index].price}'),
-            ],
+          child: Card(
+            elevation: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Image.asset(
+                    categoryProducts[index].imageUrl,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    categoryProducts[index].name,
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text('Ksh. ${categoryProducts[index].price}'),
+                ),
+              ],
+            ),
           ),
         );
       },

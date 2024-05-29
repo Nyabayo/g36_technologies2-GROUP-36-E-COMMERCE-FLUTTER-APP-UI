@@ -25,12 +25,13 @@ flutter:
 
   assets:
     - images/splash.jpg
+    - images/printer.webp
     - images/laptop.jpg
     - images/Desktop.jpg
     - images/hdd.jpg
     - images/Smartphone.jpg
     - images/smartwatch.jpg
     - images/Television.jpg
-    - images\Home Theater System.jpg
-    - images\Streaming Device1.webp
-    - images\VR Headsetsare.webp
+    - images/Home Theater System.jpg
+    - images/Streaming Device1.webp
+    - images/VR Headsetsare.webp

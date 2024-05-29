@@ -34,7 +34,7 @@ class ShopByDepartmentPage extends StatelessWidget {
       name: 'Kyocera TASKalfa M2552cidn A3 Colour Multifunction Laser Printer',
       description: 'Up to 25 pages per minute in b/w and colour\nOutstanding image quality due to advanced colour technology\nStandard print resolution of 1,200 x 1,200 dpi, 2 bit depth (equivalent of 4,800 x 1,200 dpi)\nFlexible paper handling from A6 up to SRA3 for up to 7,150 sheets\nProductive finishing options including a space-saving inner finisher\n4 GB RAM, 32 GB SSD + optional 320 GB HDD memory and storage\nSelectable one-path duplex and 2 reversing document processors\nComprehensive support for all state of-the-art mobile communications',
       price: 450000,
-      imageUrl: 'images/Printer.jpg',
+      imageUrl: 'images/printer.webp',
       category: 'Computers & Accessories',
     ),
     // Mobile Devices & Accessories
@@ -56,23 +56,6 @@ class ShopByDepartmentPage extends StatelessWidget {
     ),
     Product(
       id: '7',
-      name: 'onn. 7" Tablet, 32GB (2022 Model)',
-      description: '2.0 GHz Quad-Core Processor, Charcoal',
-      price: 59000,
-      imageUrl: 'images/tablet.jpg',
-      category: 'Mobile Devices & Accessories',
-    ),
-    Product(
-      id: '8',
-      name: 'Vention 20000mAh Power Bank (Micro-USB + USB-C + USB-A + USB-A) 22.5W White-FHLB0',
-      description: '',
-      price: 2800,
-      imageUrl: 'images/Power%20Bank.jpg',
-      category: 'Mobile Devices & Accessories',
-    ),
-    // Home Entertainment
-    Product(
-      id: '9',
       name: 'Hisense 65 inch TV Smart 4K UHD Frameless 65A7GKEN',
       description: '',
       price: 89995,
@@ -80,27 +63,27 @@ class ShopByDepartmentPage extends StatelessWidget {
       category: 'Home Entertainment',
     ),
     Product(
-      id: '10',
+      id: '8',
       name: 'LG LHD657 5.1CH 1000W Home Theatre System',
       description: '',
       price: 44999,
-      imageUrl: 'images/Home%20Theater%20System.jpg',
+      imageUrl: 'images/Home Theater System.jpg',
       category: 'Home Entertainment',
     ),
     Product(
-      id: '11',
+      id: '9',
       name: 'Turn Your Analogue TV Smart Android TV by purchasing This Android 11 Set-top Box',
       description: '',
       price: 2780,
-      imageUrl: 'images/Streaming%20Device1.jpg',
+      imageUrl: 'images/Streaming Device1.webp',
       category: 'Home Entertainment',
     ),
     Product(
-      id: '12',
+      id: '10',
       name: 'Meta Quest 2 Advanced All-in-One VR Headset',
       description: '',
       price: 45000,
-      imageUrl: 'images/VR%20Headsetsare.webp',
+      imageUrl: 'images/VR Headsetsare.webp',
       category: 'Home Entertainment',
     ),
   ];
@@ -121,6 +104,7 @@ class ShopByDepartmentPage extends StatelessWidget {
     );
   }
 
+  // Build department section
   Widget _buildDepartment(BuildContext context, String department) {
     final departmentProducts =
         products.where((product) => product.category == department).toList();
@@ -139,7 +123,11 @@ class ShopByDepartmentPage extends StatelessWidget {
             itemCount: departmentProducts.length,
             itemBuilder: (context, index) {
               return ListTile(
-                leading: Image.asset(departmentProducts[index].imageUrl),
+                leading: Image.asset(
+                  departmentProducts[index].imageUrl,
+                  width: 50, // Adjust image size
+                  fit: BoxFit.cover,
+                ),
                 title: Text(departmentProducts[index].name),
                 subtitle: Text('Ksh. ${departmentProducts[index].price}'),
                 onTap: () {
