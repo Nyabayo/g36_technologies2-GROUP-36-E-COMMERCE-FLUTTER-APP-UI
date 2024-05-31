@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:g36_technologies2/providers/search_provider.dart';
+import 'package:provider/provider.dart';
 import 'product_details_page.dart';
 import '../models/product.dart';
 
@@ -107,39 +109,67 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final searchQuery =
+        Provider.of<SearchProvider>(context).searchQuery.toLowerCase();
+
+    // Filter products based on search query for both category and product name
+    final filteredProducts = products.where((product) {
+      final productName = product.name.toLowerCase();
+      final productCategory = product.category.toLowerCase();
+      return productName.contains(searchQuery) ||
+          productCategory.contains(searchQuery);
+    }).toList();
+
     return ListView(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Computers & Accessories',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        if (filteredProducts
+            .any((product) => product.category == 'Computers & Accessories'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Computers & Accessories',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        _buildProductCategory(context, 'Computers & Accessories'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Mobile Devices & Accessories',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        if (filteredProducts
+            .any((product) => product.category == 'Computers & Accessories'))
+          _buildProductCategory(
+              context, 'Computers & Accessories', filteredProducts),
+        if (filteredProducts.any(
+            (product) => product.category == 'Mobile Devices & Accessories'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Mobile Devices & Accessories',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        _buildProductCategory(context, 'Mobile Devices & Accessories'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Home Entertainment',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        if (filteredProducts.any(
+            (product) => product.category == 'Mobile Devices & Accessories'))
+          _buildProductCategory(
+              context, 'Mobile Devices & Accessories', filteredProducts),
+        if (filteredProducts
+            .any((product) => product.category == 'Home Entertainment'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Home Entertainment',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        _buildProductCategory(context, 'Home Entertainment'),
+        if (filteredProducts
+            .any((product) => product.category == 'Home Entertainment'))
+          _buildProductCategory(
+              context, 'Home Entertainment', filteredProducts),
       ],
     );
   }
 
-  Widget _buildProductCategory(BuildContext context, String category) {
-    final categoryProducts =
-        products.where((product) => product.category == category).toList();
+  Widget _buildProductCategory(
+      BuildContext context, String category, List<Product> filteredProducts) {
+    final categoryProducts = filteredProducts
+        .where((product) => product.category == category)
+        .toList();
     return GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
