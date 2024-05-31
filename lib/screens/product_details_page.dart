@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+import 'package:provider/provider.dart';
+import '../providers/cart_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -32,11 +34,21 @@ class ProductDetailsPage extends StatelessWidget {
             SizedBox(height: 16),
             Text(product.description),
             SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Add to cart logic
+            // Using Consumer to dynamically change button text
+            Consumer<CartProvider>(
+              builder: (context, cart, _) {
+                bool isInCart = cart.items.contains(product);
+                return ElevatedButton(
+                  onPressed: () {
+                    if (isInCart) {
+                      cart.removeItem(product);
+                    } else {
+                      cart.addItem(product);
+                    }
+                  },
+                  child: Text(isInCart ? 'Remove from Cart' : 'Add to Cart'),
+                );
               },
-              child: Text('Add to Cart'),
             ),
             ElevatedButton(
               onPressed: () {

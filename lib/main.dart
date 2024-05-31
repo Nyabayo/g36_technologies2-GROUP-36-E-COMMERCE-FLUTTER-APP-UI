@@ -15,6 +15,7 @@ class G36App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => SearchProvider()),
+
         // Add other providers here
       ],
       child: MaterialApp(
