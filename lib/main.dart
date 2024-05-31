@@ -21,6 +21,7 @@ class G36App extends StatelessWidget {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
         ),
+        debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
     );
