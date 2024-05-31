@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:g36_technologies2/providers/search_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
 import 'providers/cart_provider.dart';
@@ -13,6 +14,7 @@ class G36App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
         // Add other providers here
       ],
       child: MaterialApp(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:g36_technologies2/providers/search_provider.dart';
 import 'profile_page.dart';
 import 'cart_page.dart';
 import 'shop_by_department_page.dart';
 import 'home_page.dart';
+import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -27,6 +29,8 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final searchProvider = Provider.of<SearchProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -41,6 +45,9 @@ class _LandingPageState extends State<LandingPage> {
             fillColor: Colors.white,
             contentPadding: EdgeInsets.all(8.0),
           ),
+          onChanged: (query) {
+            searchProvider.updateSearchQuery(query);
+          },
         ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
